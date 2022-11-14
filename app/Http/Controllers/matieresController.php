@@ -47,23 +47,13 @@ class matieresController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'code_mat' => 'required|unique:posts|max:5',
+            'code_mat' => 'required|max:5',
             'libelle_mat' => 'required',
             'coefficient_mat' => 'required',
         ]);
 
-
-        // $mat =    DB::table('matieres')->where('code_mat', $id);
-        // $mat->update(
-        //     array(
-        //         'code_mat'   => $request->input('code_mat'),
-        //         'libelle_mat'   => $request->input('libelle_mat'),
-        //         'coefficient_mat'  => $request->input('coefficient_mat')
-
-        //     )
-        // );
-        $mat= new matiere;
-        $matieres = matiere::find($id)->first();
+       // $mat= new matiere;
+        $matieres = matiere::find($id);
         $matieres->code_mat = $request->get('code_mat');
         $matieres->libelle_mat = $request->get('libelle_mat');
         $matieres->coefficient_mat = $request->get('coefficient_mat');

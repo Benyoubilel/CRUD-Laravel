@@ -13,7 +13,8 @@ class epreuvesController extends Controller
     {
         // $epreuves = DB::select('select * from epreuves');
         $epreuves = epreuve::all();
-        return view('affEpreuves', compact('epreuves'));
+        $mat = matiere::all();
+        return view('affEpreuves', compact('epreuves'), compact('mat'));
     }
 
     public function store(Request $request)
@@ -68,7 +69,7 @@ class epreuvesController extends Controller
 
     //---------Methode 2 ---------//
         $epreuves = new epreuve;
-        $epreuves = epreuve::find($id)->first();
+        $epreuves = epreuve::find($id);
         $epreuves->date_ep = $request->get('date_ep');
         $epreuves->lieu_ep = $request->get('lieu_ep');
         $epreuves->matiere_id = $request->get('matiere_id');

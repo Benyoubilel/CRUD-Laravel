@@ -57,10 +57,15 @@
                             <input type="text" class="form-control" name="lieu_ep" id="val3" placeholder="salle-112"
                                 required>
                             {{-- change to selectbox from database --}}
-                            <label class="p-2">ID matiere</label>
-                            <input type="text" class="form-control" name="matiere_id" id="val4" placeholder="ALG"
-                                required>
-                                {{-- end select box --}}
+                            <label class="p-2">Code matiere</label>
+                            <select class="form-select" aria-label="Default select example" name="matiere_id" required>
+                                <option disabled selected>Selectionné un code matiere</option>
+                                @foreach ($mat as $m)
+                                <option value=" {{ $m->id }}"> {{ $m->code_mat }}</option>
+                                @endforeach
+                            </select>
+                           
+                            {{-- end select box --}}
                             <br>
                             <div class="modal-footer m-2">
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
@@ -154,9 +159,16 @@
                                                 name="lieu_ep" id="val3" required>
 
                                             {{--  a modifier en selectbox from database  --}}
-                                            <label class="p-2">ID matiere</label>
-                                            <input type="text" value="{{ $epreuve->matiere_id }}" class="form-control"
-                                                name="matiere_id" id="val4" required>
+                                            <label class="p-2">Code matiere</label>
+                                            <input type="text" value="{{ $epreuve->matieres->code_mat }}"
+                                                class="form-control"  id="val4" disabled>
+                                                <br>
+                                                <select class="form-select" aria-label="Default select example" name="matiere_id" required>
+                                                    <option disabled selected>Selectionné pour changé le code matiere</option>
+                                                    @foreach ($mat as $m)
+                                                    <option value=" {{ $m->id }}"> {{ $m->code_mat }}</option>
+                                                    @endforeach
+                                                </select>
                                             {{-- end select box --}}
                                             <br>
                                             <div class="modal-footer m-2">
