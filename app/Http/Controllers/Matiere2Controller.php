@@ -4,22 +4,38 @@ namespace App\Http\Controllers;
 
 use App\Models\matiere;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class matieresController extends Controller
+class Matiere2Controller extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        // $matieres = DB::table('matiere')->get();
-        //  $matieres = DB::select('select * from matieres');
         $matieres = matiere::all();
         return view('affMatieres', compact('matieres'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        // DB::insert('insert into matieres(code_mat,libelle_mat,coefficient_mat) values("algo","algorithme","2")');
-
         $this->validate($request, [
             'code_mat' => 'required|unique:matieres|max:6',
             'libelle_mat' => 'required|max:255',
@@ -36,14 +52,35 @@ class matieresController extends Controller
         return redirect('/affMatieres')->with('success', 'matiere ajouté');
     }
 
-    public function findbyid($id)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-       // $mat =    DB::table('matieres')->where('code_mat', $id);
-        $matieres = matiere::find($id)->first();
-        return view('matieres.edit', compact('matieres'));
+        //
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -62,12 +99,18 @@ class matieresController extends Controller
         return redirect('/affMatieres')->with('success', 'matiere modifié');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
-        //DB::table('matieres')->where('code_mat', $id)->delete();
-        $mat = matiere::find($id)->first();
-        $mat->delete(); 
-
-        return redirect('/affMatieres')->with('success', 'matiere supprimé.');
+            //DB::table('matieres')->where('code_mat', $id)->delete();
+            $mat = matiere::find($id)->first();
+            $mat->delete(); // Easy right?
+    
+            return redirect('/affMatieres')->with('success', 'matiere supprimé.');
     }
 }

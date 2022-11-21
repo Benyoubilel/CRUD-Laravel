@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Epreuve;
 use Illuminate\Http\Request;
 
-class EpreuveController extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +40,10 @@ class EpreuveController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Epreuve  $epreuve
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Epreuve $epreuve)
+    public function show($id)
     {
         //
     }
@@ -52,10 +51,10 @@ class EpreuveController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Epreuve  $epreuve
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Epreuve $epreuve)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +63,10 @@ class EpreuveController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Epreuve  $epreuve
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Epreuve $epreuve)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +74,10 @@ class EpreuveController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Epreuve  $epreuve
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Epreuve $epreuve)
+    public function destroy($id)
     {
         //
     }

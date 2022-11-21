@@ -44,10 +44,10 @@
                         <h1 class="modal-title fs-5" id="addmodalLabel">Ajouter</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form class="form-floating" method="POST" action="/affEpreuves/add" id="editform">
+                    <form class="form-floating" method="POST" action="/affEpreuves/" id="editform">
                         {{-- input security --}}
                         {{ csrf_field() }}
-                        {{ method_field('PUT') }}
+                        {{ method_field('POST') }}
                         <div class="modal-body">
                             <label class="p-2">Date</label>
                             <input type="text" class="form-control" name="date_ep" id="val2"
@@ -142,7 +142,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <form class="form-floating" method="POST"
-                                        action="/affEpreuves/edit/{{ $epreuve->id }}" id="editform">
+                                        action="/affEpreuves/{{ $epreuve->id }}" id="editform">
                                         {{ csrf_field() }}
                                         {{ method_field('PUT') }}
 
@@ -198,7 +198,7 @@
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <form class="form-floating" method="POST"
-                                    action="/affEpreuves/delete/{{ $epreuve->id }}" id="editform">
+                                    action="/affEpreuves/{{ $epreuve->id }}" id="editform">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <div class="modal-content">
