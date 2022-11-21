@@ -15,8 +15,10 @@ class Epreuve2Controller extends Controller
      */
     public function index()
     {
-        $epreuves = epreuve::all();
+        $epreuves = epreuve::paginate(10);
         $mat = matiere::all();
+
+       
         return view('affEpreuves', compact('epreuves'), compact('mat'));
     }
 

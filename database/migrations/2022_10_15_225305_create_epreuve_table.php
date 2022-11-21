@@ -23,8 +23,8 @@ return new class extends Migration
             $table->foreign('matiere_id')
             ->references('id')
             ->on('matieres')
-            ->onDelete('restrict')
-            ->onUpdate('restrict');
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
             $table->timestamps();
         });
     }

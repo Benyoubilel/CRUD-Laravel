@@ -190,7 +190,8 @@
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            voulez-vous supprimé cette matiere!
+                                            Tous les epreuves associées a cette matiere seront supprimé!!!
+                                            voulez-vous supprimé cette matiere?
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
@@ -209,6 +210,7 @@
             @endforeach
         </tbody>
     </table>
+   
     {{-- end table info --}}
 @endsection
 @section('script')

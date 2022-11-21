@@ -186,13 +186,14 @@
                         {{-- end editemodal --}}
                     </td>
                     <td>
+                        
                         {{-- delete row  --}}
                         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
                             data-bs-target="#exampleModal{{ $epreuve->id }}">
                             <i class="fa fa-trash"></i>
                         </button>
 
-                        <!-- Modal -->
+                        <!-- remove Modal -->
 
                         <div class="modal fade" id="exampleModal{{ $epreuve->id }}" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -222,19 +223,21 @@
                                 </form>
                             </div>
                         </div>
+                          {{-- end remove emodal --}}
                         {{-- end delete row --}}
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+    <div class="row">{{ $epreuves->links() }} </div>
     {{-- end table info --}}
 @endsection
 
 @section('script')
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $(document).ready(function() {
             $('#datatable').DataTable();
         });
-    </script>
+    </script>  --}}
 @endsection

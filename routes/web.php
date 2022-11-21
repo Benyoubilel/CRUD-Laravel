@@ -24,15 +24,10 @@ use App\Http\Controllers\Matiere2Controller;
 
 
 
-// Route::get('/', function () {
-//     return view('index');
-// });
-// Route::get('/epreuve', function () {
-//     return view('epreuve');
-// });
-// Route::get('/matiere', function () {
-//     return view('matiere');
-// });
+Route::get('/', function () {
+    return view('index');
+});
+
 
 // Route::get('/affEpreuves', [epreuvesController::class, 'index']);
 // Route::put('/affEpreuves/add', [epreuvesController::class, 'store']);
@@ -45,16 +40,6 @@ use App\Http\Controllers\Matiere2Controller;
 // Route::put('/affMatieres/add', [matieresController::class, 'store']);
 // Route::put('/affMatieres/edit/{id}', [matieresController::class, 'update']);
 // Route::delete('/affMatieres/delete/{id}', [matieresController::class, 'destroy']);
-Route::get('/', function () {
-    return view('index');
-});
-Route::get('/epreuve', function () {
-    return view('epreuve');
-});
-Route::get('/matiere', function () {
-    return view('matiere');
-});
-
 
 
 // Route::get('/affEpreuves', [Epreuve2Controller::class, 'index']);
