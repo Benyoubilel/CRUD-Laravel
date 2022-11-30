@@ -1,11 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\epreuvesController;
-use App\Http\Controllers\matieresController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Epreuve2Controller;
 use App\Http\Controllers\Matiere2Controller;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,41 +16,19 @@ use App\Http\Controllers\Matiere2Controller;
 |
 */
 
-// Route::get('/template', function () {
-//     return view('template');
-// });
-
-
-
-
 Route::get('/', function () {
     return view('index');
 });
+Route::resource('affMatieres',Matiere2Controller::class)->middleware('auth');
+Route::resource('/affEpreuves',Epreuve2Controller::class)->middleware('auth');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-// Route::get('/affEpreuves', [epreuvesController::class, 'index']);
-// Route::put('/affEpreuves/add', [epreuvesController::class, 'store']);
-// Route::put('/affEpreuves/edit/{id}', [epreuvesController::class, 'update']);
-// Route::delete('/affEpreuves/delete/{id}', [epreuvesController::class, 'destroy']);
-
-
-
-// Route::get('/affMatieres', [matieresController::class, 'index']);
-// Route::put('/affMatieres/add', [matieresController::class, 'store']);
-// Route::put('/affMatieres/edit/{id}', [matieresController::class, 'update']);
-// Route::delete('/affMatieres/delete/{id}', [matieresController::class, 'destroy']);
-
-
-// Route::get('/affEpreuves', [Epreuve2Controller::class, 'index']);
-// Route::put('/affEpreuves/add', [Epreuve2Controller::class, 'store']);
-// Route::put('/affEpreuves/edit/{id}', [Epreuve2Controller::class, 'update']);
-// Route::resource('/affEpreuves/delete/{id}', [Epreuve2Controller::class, 'destroy']);
-Route::resource('/affEpreuves',Epreuve2Controller::class);
-
-
-
-// Route::get('/affMatieres', [Matiere2Controller::class, 'index']);
-// Route::put('/affMatieres/add', [Matiere2Controller::class, 'store']);
-// Route::put('/affMatieres/edit/{id}', [Matiere2Controller::class, 'update']);
-// Route::delete('/affMatieres/delete/{id}', [Matiere2Controller::class, 'destroy']);
-Route::resource('affMatieres',Matiere2Controller::class);
+require __DIR__.'/auth.php';

@@ -29,8 +29,16 @@
                     </li>
                 </ul>
                 <div class="d-flex m-2">
-                    <a class="btn btn-outline-danger me-2 " aria-current="page" href="#">Registre</a>
-                    <a class="btn btn-outline-success " aria-current="page" href="#">Login</a>
+                    @auth
+                    <form action="{{ route('logout') }}" method="POST" >
+                        @csrf 
+                        <a class="btn btn-outline-danger me-2 " aria-current="page">Logout</a>                          
+                    </form>
+                    
+                    @else
+                    <a class="btn btn-outline-danger me-2 " aria-current="page" href="{{ route('register') }}">Registre</a>
+                    <a class="btn btn-outline-success " aria-current="page" href="{{ route('login') }}">Login</a>
+                    @endauth
                 </div>
             </div>
         </div>
