@@ -15,7 +15,7 @@ class Epreuve2Controller extends Controller
      */
     public function index()
     {
-        $epreuves = epreuve::paginate(2);
+        $epreuves = epreuve::paginate(10);
         $mat = matiere::all();
 
        

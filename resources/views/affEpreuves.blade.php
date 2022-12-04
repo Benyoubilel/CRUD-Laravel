@@ -31,6 +31,7 @@
         @endif
         {{-- end errors modal --}}
         <!-- Button trigger modal -->
+        @auth
         <button type="button" class="btn btn-primary align-items-center pull-right m-2" data-bs-toggle="modal"
             data-bs-target="#addmodal">
             Ajouter <i class="fa fa-plus fa-x"></i>
@@ -77,6 +78,7 @@
             </div>
         </div>
     </div>
+    @endauth
     {{-- end addmodal --}}
     {{-- table info --}}
     <table class="table table-sm" id="datatable">
@@ -97,12 +99,14 @@
                 <th>
                     Code matiere
                 </th>
+                @auth
                 <th>
                     Modifier
                 </th>
                 <th>
                     supprimer
                 </th>
+                @endauth
             </tr>
         </thead>
         <tbody>
@@ -124,6 +128,7 @@
                     <td>
                         {{ $epreuve->matieres->code_mat }}
                     </td>
+                    @auth
                     <td>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-success align-items-center" data-bs-toggle="modal"
@@ -226,6 +231,7 @@
                           {{-- end remove emodal --}}
                         {{-- end delete row --}}
                     </td>
+                    @endauth
                 </tr>
             @endforeach
         </tbody>

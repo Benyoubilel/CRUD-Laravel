@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('index');
 });
 Route::resource('affMatieres',Matiere2Controller::class)->middleware('auth');
-Route::resource('/affEpreuves',Epreuve2Controller::class)->middleware('auth');
+Route::resource('/affEpreuves',Epreuve2Controller::class);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

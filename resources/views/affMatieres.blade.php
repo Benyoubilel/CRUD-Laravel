@@ -29,6 +29,7 @@
         {{-- end message errors --}}
 
         <!-- Button trigger modal -->
+        @auth
         <button type="button" class="btn btn-primary align-items-center pull-right m-2" data-bs-toggle="modal"
             data-bs-target="#addmodal">
             Ajouter <i class="fa fa-plus fa-x"></i>
@@ -69,7 +70,7 @@
         </div>
         {{-- end editmodal --}}
     </div>
-
+@endauth
     {{-- table info --}}
     <table class="table table-sm" id="datatable">
         <thead>
@@ -86,12 +87,14 @@
                 <th>
                     Coefficient
                 </th>
+                @auth
                 <th>
                     Modifier
                 </th>
                 <th>
                     supprimer
                 </th>
+                @endauth
             </tr>
         </thead>
         <tbody>
@@ -110,6 +113,7 @@
                     <td>
                         {{ $matiere->coefficient_mat }}
                     </td>
+                    @auth
                     <td>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-success align-items-center editbtn" data-bs-toggle="modal"
@@ -205,7 +209,7 @@
 
                         {{-- end delete option --}}
                     </td>
-
+                    @endauth
                 </tr>
             @endforeach
         </tbody>
