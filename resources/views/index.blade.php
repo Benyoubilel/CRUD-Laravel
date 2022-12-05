@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-      
+
 </head>
 
 <body>
@@ -37,68 +37,137 @@
                             </button>
                         </form>
                     @else
-                        <a class="btn btn-outline-danger me-2 " aria-current="page"
-                            href="{{ route('register') }}">Registre</a>
-                        {{-- <a class="btn btn-outline-success " aria-current="page" href="{{ route('login') }}">Login</a> --}}
-                        <button type="button" class="btn btn-outline-success"
-                            data-bs-toggle="modal" data-bs-target="#login">
-                            Login 
+                        {{-- <a class="btn btn-outline-danger me-2 " aria-current="page"
+                            href="{{ route('register') }}">Registre</a> --}}
+                        <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal"
+                            data-bs-target="#registre">
+                            Registre
                         </button>
-                        <div class="modal fade" id="login" tabindex="-1" aria-labelledby="addmodalLabel" aria-hidden="true">
+                        <div class="modal fade" id="registre" tabindex="-1" aria-labelledby="addmodalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <form method="POST" action="{{ route('register') }}">
+                                    @csrf
+                                    <div class="modal-body">
+                                    <!-- Name -->
+                                    <div>
+                                        <x-input-label for="name" :value="__('Name')" class="p-2"/>
+                                        <x-text-input id="name" class="form-control" type="text" name="name" :value="old('name')" required autofocus />
+                                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                    </div>
+                        
+                                    <!-- Email Address -->
+                                    <div class="mt-4">
+                                        <x-input-label for="email" :value="__('Email')" class="p-2" />
+                                        <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required />
+                                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                    </div>
+                        
+                                    <!-- Password -->
+                                    <div class="mt-4">
+                                        <x-input-label for="password" :value="__('Password')" class="p-2"/>
+                        
+                                        <x-text-input id="password" class="form-control"
+                                                        type="password"
+                                                        name="password"
+                                                        required autocomplete="new-password" />
+                        
+                                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                    </div>
+                        
+                                    <!-- Confirm Password -->
+                                    <div class="mt-4">
+                                        <x-input-label for="password_confirmation" :value="__('Confirm Password')" class="p-2"/>
+                        
+                                        <x-text-input id="password_confirmation" class="form-control"
+                                                        type="password"
+                                                        name="password_confirmation" required />
+                        
+                                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                    </div>
+                        
+                                    <div class="flex items-center justify-end mt-4">
+                                        <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+                                            {{ __('Already registered?') }}
+                                        </a>
+                                        <div class="modal-footer m-2">
+                                        <x-primary-button class="btn btn-success">
+                                            {{ __('Register') }}
+                                        </x-primary-button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                        {{-- <a class="btn btn-outline-success " aria-current="page" href="{{ route('login') }}">Login</a> --}}
+                        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                            data-bs-target="#login">
+                            Login
+                        </button>
+                        <div class="modal fade" id="login" tabindex="-1" aria-labelledby="addmodalLabel"
+                            aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    
+
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
                                         <div class="modal-body">
-                                        <!-- Email Address -->
-                                        <div>
-                                            <x-input-label for="email" :value="__('Email')" class="p-2"/>
-                                            <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus />
-                                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                                        </div>
-                            
-                                        <!-- Password -->
-                                        <div class="mt-4">
-                                            <x-input-label for="password" :value="__('Password')" class="p-2"/>
-                            
-                                            <x-text-input id="password" class="form-control"
-                                                            type="password"
-                                                            name="password"
-                                                            required autocomplete="current-password" />
-                            
-                                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                                        </div>
-                            
-                                        <!-- Remember Me -->
-                                        <div class="block mt-4">
-                                            <label for="remember_me" class="form-control">
-                                                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                                                <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                                            </label>
-                                        </div>
-                            
-                                        <div class="flex items-center justify-end mt-4">
-                                            @if (Route::has('password.request'))
-                                                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                                                    {{ __('Forgot your password?') }}
-                                                </a>
-                                            @endif
-                                            <div class="modal-footer m-2">
-                                            <x-primary-button class="btn btn-success">
-                                                {{ __('Log in') }}
-                                            </x-primary-button>
+                                            <!-- Email Address -->
+                                            <div>
+                                                <x-input-label for="email" :value="__('Email')" class="p-2" />
+                                                <x-text-input id="email" class="form-control" type="email"
+                                                    name="email" :value="old('email')" required autofocus />
+                                                <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                             </div>
-                                        </div>
+
+                                            <!-- Password -->
+                                            <div class="mt-4">
+                                                <x-input-label for="password" :value="__('Password')" class="p-2" />
+
+                                                <x-text-input id="password" class="form-control" type="password"
+                                                    name="password" required autocomplete="current-password" />
+
+                                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                            </div>
+
+                                            <!-- Remember Me -->
+                                            <div class="block mt-4">
+                                                <label for="remember_me" class="form-control">
+                                                    <input id="remember_me" type="checkbox"
+                                                        class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500"
+                                                        name="remember">
+                                                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                                                </label>
+                                            </div>
+
+                                            <div class="flex items-center justify-end mt-4">
+                                                @if (Route::has('password.request'))
+                                                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                                        href="{{ route('password.request') }}">
+                                                        {{ __('Forgot your password?') }}
+                                                    </a>
+                                                @endif
+                                                <div class="modal-footer m-2">
+                                                    <x-primary-button class="btn btn-success">
+                                                        {{ __('Log in') }}
+                                                    </x-primary-button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    @endauth
-                </div>
+                @endauth
             </div>
+        </div>
         </div>
     </nav>
     <section class="container-fluid ">
