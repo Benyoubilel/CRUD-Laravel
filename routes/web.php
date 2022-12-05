@@ -19,7 +19,7 @@ use App\Http\Controllers\Matiere2Controller;
 Route::get('/', function () {
     return view('index');
 });
-Route::resource('affMatieres',Matiere2Controller::class)->middleware('auth');
+Route::resource('affMatieres',Matiere2Controller::class);
 Route::resource('/affEpreuves',Epreuve2Controller::class);
 Route::get('/dashboard', function () {
     return view('dashboard');
